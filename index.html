@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter - Real-time Exchange Rates</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome for modern icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-decor">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+    </div>
+
+    <main class="container">
+        <div class="converter-card">
+            <!-- Header Section -->
+            <header class="card-header">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-coins"></i>
+                </div>
+                <h1>Currency Converter</h1>
+                <p>Check live foreign currency exchange rates</p>
+            </header>
+
+            <!-- Error Notification Banner -->
+            <div id="error-message" class="error-banner hidden" role="alert" aria-live="polite">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <span id="error-text">An error occurred. Please try again.</span>
+            </div>
+
+            <!-- Currency Converter Form -->
+            <form id="converter-form" onsubmit="return false;">
+                <!-- Amount Input Field -->
+                <div class="form-group">
+                    <label for="amount">Amount</label>
+                    <div class="input-wrapper">
+                        <span class="currency-symbol" id="input-symbol">$</span>
+                        <input
+                            type="number"
+                            id="amount"
+                            name="amount"
+                            value="1"
+                            min="0.01"
+                            step="any"
+                            placeholder="Enter amount..."
+                            required
+                            autocomplete="off"
+                        >
+                    </div>
+                </div>
+
+                <!-- Currency Selection Row -->
+                <div class="currency-selection-row">
+                    <!-- From Currency -->
+                    <div class="form-group currency-select-group">
+                        <label for="from-currency">From</label>
+                        <div class="select-box">
+                            <img src="https://flagsapi.com/US/flat/64.png" alt="USD Flag" id="from-flag" class="flag-icon">
+                            <select id="from-currency" name="from-currency">
+                                <!-- Populated dynamically by script.js -->
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Swap Button -->
+                    <button type="button" id="swap-btn" class="swap-button" title="Swap currencies" aria-label="Swap source and target currencies">
+                        <i class="fa-solid fa-arrows-rotate"></i>
+                    </button>
+
+                    <!-- To Currency -->
+                    <div class="form-group currency-select-group">
+                        <label for="to-currency">To</label>
+                        <div class="select-box">
+                            <img src="https://flagsapi.com/IN/flat/64.png" alt="INR Flag" id="to-flag" class="flag-icon">
+                            <select id="to-currency" name="to-currency">
+                                <!-- Populated dynamically by script.js -->
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Convert Button -->
+                <button type="submit" id="convert-btn" class="convert-button">
+                    <span class="btn-text">Convert Currency</span>
+                    <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                    <div class="spinner hidden" id="btn-spinner"></div>
+                </button>
+            </form>
+
+            <!-- Conversion Result & Rate Details -->
+            <div id="result-box" class="result-box">
+                <div class="exchange-rate-text" id="exchange-rate-text">
+                    Live Exchange Rate
+                </div>
+                <div class="converted-result" id="converted-result">
+                    1.00 USD = 83.50 INR
+                </div>
+                <div class="rate-details" id="rate-details">
+                    <span class="rate-unit" id="unit-rate">1 USD = 83.50 INR</span>
+                    <span class="last-updated" id="last-updated"><i class="fa-regular fa-clock"></i> Updated: Just now</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
